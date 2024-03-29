@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load myfilter %}
+{% block body %}
+
+<div class="container mb-5">
+    <h1 class="alert-danger text-center p-3"><u>RESUME</u></h1>
+    
+    <div class="row shadow p-5">
+        <div class="col-sm-12">
+            <p class="float-end">Applicantion No: {{candidate.id}}</p>
+            <img src="{{candidate.profile_image.url}}" alt="" class="img-fluid img-thumbnail float-end mt-4" width="150" height="150">
+            <p>Name: {{candidate.name}}</p>
+            <p>Date of Birth: {{candidate.dob}}</p>
+            <p>Gender: {{candidate.gender}}</p>
+            <p>Address: {{candidate.locality}}, {{candidate.city}}, {{candidate.state}} - {{candidate.pin}}</p>
+            <p>Mobile No: {{candidate.mobile}}</p>
+            <p>Email ID: {{candidate.email}}</p>
+            <p>Preferred Job Cities: {{candidate.job_city|remove_special:"[ ]'"}}</p>
+            <p>Attachment: <a href="{{candidate.my_file.url}}">Download File</a></p>
+           <div class="text-center">
+            <a href="{% url 'home' %}" class="btn btn-danger">Back to Home</a>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container mb-5">
+    <h1 class="alert-danger text-center p-3">Personal Details</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <form action="" method="post" enctype="multipart/form-data" class="shadow p-5">
+                {% csrf_token %}
+                {% for fm in form %}
+                <div class="form-group mb-3">
+                    {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <input type="submit" value="Submit" class="btn btn-primary">
+                <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+                <a href="{% url 'addeducation' %}" class="btn btn-primary">Next</a>
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <p class="alert alert-danger my-3">{{error}}</p>
+                {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock body %}
